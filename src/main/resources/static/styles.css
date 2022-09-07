@@ -1,0 +1,65 @@
+nav{
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+nav > a{
+    padding: .2rem 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    color: darkgrey;
+}
+
+nav > a:hover{
+    color: black;
+}
+
+.container{
+    max-width: 940px;
+    width: 100%;
+    margin: auto;
+    padding: 1rem 2rem 0;
+}
+table{
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+tr, td{
+    border: 1px solid darkgray;
+    padding: .5rem;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+
+    padding: 1rem;
+    border: .5rem solid darkgray;
+}
+form > *{
+    display: flex;
+    justify-content: space-between;
+}
+
+.active{
+    color: black;
+}
+.btn{
+    padding: .3rem 1rem;
+    border: 1px solid darkgray;
+    border-radius: .5rem;
+    text-decoration: none;
+    align-self: end;
+    cursor: pointer;
+}
+.btn:hover{
+    background-color: darkgray;
+}
+
+input, select{
+    padding: .2rem .5rem;
+    border-radius: .5rem;
+}

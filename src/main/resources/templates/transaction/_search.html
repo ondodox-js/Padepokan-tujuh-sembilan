@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <title>transaction</title>
+</head>
+<body>
+<div class="container">
+    <header>
+        <nav>
+            <a th:href="@{/account}">Account</a>
+            <a th:href="@{/transaction}">Transaction</a>
+            <a th:href="@{/}">Poin</a>
+            <a th:href="@{/transaction/search}" class="active">Transaction Report</a>
+
+        </nav>
+    </header>
+    <div>
+        <form th:action="@{/transaction/search}" th:method="get">
+            <label>
+                Account Id
+                <select th:name="accountId">
+                    <option th:value="${item.accountId}" th:each="item : ${accounts}" th:text="${item.accountId}"></option>
+                </select>
+            </label>
+            <label>
+                Start date
+                <input th:type="date" th:name="startDate">
+            </label>
+            <label>
+                End date
+                <input th:type="date" th:name="endDate">
+            </label>
+            <button class="btn">Search</button>
+        </form>
+        <p th:if="${start != null && end != null}">
+        <p th:text="${transactions.get(0).account.name}" th:if="${start != null && end != null}"></p>
+        <span th:text="${start}" th:if="${start != null}"></span> - <span th:text="${end}" th:if="${end != null}"></span>
+        </p>
+        <p th:unless="${start != null && end != null}">
+            All report
+        </p>
+        <table th:if="${transactions.size() > 0}">
+            <thead>
+            <tr>
+                <th>Transaction date</th>
+                <th>Description</th>
+                <th>Debit</th>
+                <th>Credit</th>
+                <th>Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${transactions}">
+                <td th:text="${item.date}"></td>
+                <td th:text="${item.description.value}"></td>
+                <td th:text="${item.debitCreditStatus.name() == 'CREDIT'} ? ${item.amount} : '-'"></td>
+                <td th:text="${item.debitCreditStatus.name() == 'DEBIT'} ?  ${item.amount} : '-' "></td>
+                <td th:text="${item.amount}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <h3 th:unless="${transactions.size() > 0}">Report not found</h3>
+    </div>
+</div>
+</body>
+</html>

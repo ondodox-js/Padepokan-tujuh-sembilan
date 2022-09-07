@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <title>account</title>
+</head>
+<body>
+<div class="container">
+    <header>
+        <nav>
+            <a th:href="@{/account}" class="active">Account</a>
+            <a th:href="@{/transaction}" >Transaction</a>
+            <a th:href="@{/}">Poin</a>
+            <a th:href="@{/transaction/search}">Transaction Report</a>
+        </nav>
+    </header>
+    <a th:href="@{/account/create}" class="btn">Add account</a>
+    <table th:if="${accounts.size() > 0}">
+        <thead>
+        <tr>
+            <th>Account id</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="account : ${accounts}">
+            <td th:text="${account.accountId}"></td>
+            <td th:text="${account.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>    <h3 th:unless="${accounts.size() > 0}">Accounts not found!</h3>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>create - transaction</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<div class="container">
+    <a th:href="@{/transaction}" class="btn">Back</a>
+    <form th:action="@{/transaction}" th:object="${transaction}" th:method="post">
+
+        <label>
+            Account id
+            <select th:field="*{account}">
+                <option th:value="${item.accountId}" th:each="item : ${accounts}" th:text="${item.accountId}"></option>
+            </select>
+        </label>
+        <label>
+            Transaction date
+            <input th:type="date" th:field="*{date}">
+        </label>
+        <label>
+            Description
+            <select th:field="*{description}">
+                <option th:value="${desc}" th:text="${desc.value}" th:each="desc : ${T(com.ondodox.padepokan79.transaction.Description).values()}"></option>
+            </select>
+        </label>
+        <label>
+            Debit Credit Status
+            <select th:field="*{debitCreditStatus}">
+                <option th:value="${status}" th:text="${status.value}" th:each="status : ${T(com.ondodox.padepokan79.transaction.Status).values()}"></option>
+            </select>
+        </label>
+        <label>
+            Amount
+            <input th:type="number" th:field="*{amount}">
+        </label>
+        <button th:text="Submit" th:type="submit" class="btn"></button>
+    </form>
+</div>
+</body>
+</html>

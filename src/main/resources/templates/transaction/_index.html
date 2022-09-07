@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/styles.css}">
+  <title>transaction</title>
+</head>
+<body>
+<div class="container">
+  <header>
+    <nav>
+      <a th:href="@{/account}">Account</a>
+      <a th:href="@{/transaction}" class="active">Transaction</a>
+      <a th:href="@{/}">Poin</a>
+      <a th:href="@{/transaction/search}">Transaction Report</a>
+
+    </nav>
+  </header>
+  <div>
+    <a th:href="@{/transaction/create}" class="btn" th:if="${accounts.size() > 0}">Add transaction</a>
+    <table th:if="${transactions.size() > 0}">
+      <thead>
+      <tr>
+        <th>Account id</th>
+        <th>Transaction date</th>
+        <th>Description</th>
+        <th>Debit or Credit</th>
+        <th>Amount</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="item : ${transactions}">
+        <td th:text="${item.account.accountId}"></td>
+        <td th:text="${item.date}"></td>
+        <td th:text="${item.description.value}"></td>
+        <td th:text="${item.debitCreditStatus.value}"></td>
+        <td th:text="${item.amount}"></td>
+      </tr>
+      </tbody>
+    </table>
+    <h3 th:unless="${transactions.size() > 0}">Transactions not found</h3>
+  </div>
+</div>
+</body>
+</html>

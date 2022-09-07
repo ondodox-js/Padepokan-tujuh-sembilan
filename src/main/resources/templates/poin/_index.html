@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <title>poin</title>
+</head>
+<body>
+<div class="container">
+    <header>
+        <nav>
+            <a th:href="@{/account}">Account</a>
+            <a th:href="@{/transaction}">Transaction</a>
+            <a th:href="@{/}" class="active">Poin</a>
+            <a th:href="@{/transaction/search}">Transaction Report</a>
+
+        </nav>
+    </header>
+    <table th:if="${poins.size() > 0}">
+        <thead>
+        <tr>
+            <th>Account id</th>
+            <th>Name</th>
+            <th>Total points</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="poin : ${poins}">
+            <td th:text="${poin.account.accountId}"></td>
+            <td th:text="${poin.account.name}"></td>
+            <td th:text="${poin.poins}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <h3 th:unless="${poins.size() > 0}">Poins not found!</h3>
+
+</div>
+</body>
+</html>
